@@ -1,0 +1,38 @@
+{{!-- Extend the main layout --}}
+{{#extend "main"}}
+  {{!-- Set the page title --}}
+  {{#content "title"}}{{post.title}}{{/content}}
+
+  {{!-- Page content --}}
+  <h1>{{post.title}}</h1>
+  <p>Posted by {{post.User.username}} on {{post.createdAt}}</p>
+  <p>{{{post.body}}}</p>
+
+  {{!-- Display any comments on the post --}}
+  {{#if post.Comments.length}}
+    <h2>Comments:</h2>
+    <ul>
+      {{#each post.Comments}}
+        <li>
+          <p>{{body}}</p>
+          <p>Comment by {{User.username}} on {{createdAt}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+
+  {{!-- Check if the user is logged in --}}
+  {{#if user}}
+    {{!-- Display the comment form --}}
+    <form action="/comment/{{post.id}}" method="POST">
+      <div>
+        <label for="comment">Leave a comment:</label>
+        <textarea id="comment" name="comment" required></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  {{else}}
+    {{!-- Display a message inviting the user to log in or sign up --}}
+    <p>You must be logged in to leave a comment. <a href="/login">Log in</a> or <a href="/signup">sign up</a> now!</p>
+  {{/if}}
+{{/extend}}

@@ -1,0 +1,23 @@
+{{!-- Extend the main layout --}}
+{{#extend "main"}}
+  {{!-- Set the page title --}}
+  {{#content "title"}}Home{{/content}}
+
+  {{!-- Page content --}}
+  <h1>All Blog Posts</h1>
+
+  {{!-- Check if there are posts to display --}}
+  {{#if posts.length}}
+    {{!-- Loop through each post and display its title and creation date --}}
+    <ul>
+      {{#each posts}}
+        <li>
+          <h2><a href="/post/{{id}}">{{title}}</a></h2>
+          <p>{{createdAt}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No posts yet. Check back later!</p>
+  {{/if}}
+{{/extend}}
