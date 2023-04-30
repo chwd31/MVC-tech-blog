@@ -1,0 +1,29 @@
+{{!-- Extend the main layout --}}
+{{#extend "main"}}
+  {{!-- Set the page title --}}
+  {{#content "title"}}Login{{/content}}
+
+  {{!-- Page content --}}
+  <h1>Login</h1>
+
+  {{!-- Display any login error messages --}}
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
+
+  {{!-- Login form --}}
+  <form action="/login" method="POST">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+
+  {{!-- Link to the signup page --}}
+  <p>Don't have an account? <a href="/signup">Sign up</a> now!</p>
+{{/extend}}
